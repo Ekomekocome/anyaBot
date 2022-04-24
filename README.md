@@ -1,2 +1,2 @@
 # anyaBot
-bot translate
+belom selesai:v
