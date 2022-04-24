@@ -1,0 +1,2 @@
+# anyaBot
+bot translate
