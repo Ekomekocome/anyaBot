@@ -8,4 +8,7 @@
     "axios": "^0.26.1",
     "@vitalets/google-translate-api": "^8.0.0"
    }
+  "scripts": {
+        "start": "node index.js"
+    }
 }
