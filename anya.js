@@ -1,5 +1,5 @@
 const Client = require('node-telegram-bot-api')
-const token = 'bot-tokenmu'
+const token = '5209758911:AAExLziFJ_kaBiZ_b5E609skMXTh-SvjQ2g'
 const anya = new Client(token, {polling: true});
 const axios = require('axios')
 const translate = require('@vitalets/google-translate-api')
@@ -17,37 +17,34 @@ anya.on('message', async(msg) => {
           console.log(`[ MESSAGE ] FROM [ ${pushname} ]`)
           }
 
-
+          const quotedMessage = msg.reply_to_message || {}
+          const isQuoted = msg.hasOwnProperty("reply_to_message")
 
 
 switch(command){
     case '/help':
     case '/menu':
     case '/start':
-        asw = `halo ${pushname}
+        asw = `halo ${pushname}, menu anyaBot sebagai berikut
         /menu - menu
-        /trid - translate jepang ke indo
-        /trjp - transalate indo ke jepang
+        /tr - tr (kode bahasa) (reply pesannya)
         `
         anya.sendMessage(chatId, asw)
         break
-        case '/trid':
-            texttr = body.slice(5)
-            translate(texttr, {from: 'ja', to: 'id'}).then(res => {
-                anya.sendMessage(chatId, res.text)
-                })
-            break
-        case '/trjp':
-            yor = body.slice(5)
-            translate(yor, {from: 'id', to: 'ja'}).then(res => {
-                anya.sendMessage(chatId, res.text)
-                })
-            break
+            case '/tr':
+                if (!isQuoted) return anya.sendMessage(chatId, `silahkan reply command`)
+                lalu = msg.reply_to_message.text
+                yor = body.slice(4)
+                translate(lalu, {from: 'auto', to: yor}).then(res => {
+                    anya.sendMessage(chatId, res.text)
+                    })
+                break
     default:
+        if (body.startsWith('/')){
         anya.sendMessage(chatId, "fitur itu tidak ada")
-
+        }
 }
-} catch(er){
-    console.log('[ ERROR ] '+ er)
+} catch(e){
+    console.log('[ ERROR ] '+ e)
   } 
 })
