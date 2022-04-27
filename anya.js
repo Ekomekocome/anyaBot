@@ -1,5 +1,5 @@
 const Client = require('node-telegram-bot-api')
-const token = '5209758911:AAExLziFJ_kaBiZ_b5E609skMXTh-SvjQ2g'
+const token = 'tokenmu'
 const anya = new Client(token, {polling: true});
 const axios = require('axios')
 const translate = require('@vitalets/google-translate-api')
